@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { StarterSelectionPage } from './pages/StarterSelectionPage';
 import { MainDashboard } from './pages/MainDashboard';
@@ -6,6 +6,7 @@ import { AuthPage } from './pages/AuthPage';
 import { DungeonLobby } from './pages/DungeonLobby';
 import { BattleScreen } from './pages/BattleScreen';
 import { InventoryScreen } from './pages/InventoryScreen';
+import { AuraTestPage } from './pages/AuraTestPage';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/dungeon" element={<DungeonLobby />} />
             <Route path="/battle/:battleId" element={<BattleScreen />} />
             <Route path="/inventory" element={<InventoryScreen />} />
+            <Route path="/aura-test" element={<AuraTestPage />} />
           </Routes>
         </div>
       </div>

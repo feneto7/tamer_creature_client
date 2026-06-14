@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: var(--theme-color, #3b82f6);
+  --color-primary: var(--theme-color, #00f3ff);
   --color-pixel-border: #1a1a1a;
   
   --font-pixel: 'Press Start 2P', 'Courier New', monospace;
@@ -17,12 +17,13 @@
   }
 
   body {
-    background-color: #f3f4f6;
+    background-color: #020a0f;
     font-family: var(--font-pixel);
-    -webkit-font-smoothing: none; /* Helps with pixel art look */
+    -webkit-font-smoothing: none;
   }
+}
 
-  /* Pixel Border Utility */
+@layer utilities {
   .pixel-border {
     box-shadow: 
       -4px 0 0 0 var(--color-pixel-border),
@@ -30,5 +31,73 @@
       0 -4px 0 0 var(--color-pixel-border),
       0 4px 0 0 var(--color-pixel-border);
     margin: 4px;
+  }
+
+  /* Holographic UI Components */
+  .holo-panel {
+    @apply bg-gradient-to-b from-[#0a1922] to-[#040b0f] text-white;
+    border: 1px solid rgba(0,243,255,0.3);
+    box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,243,255,0.05);
+    backdrop-filter: blur(8px);
+  }
+
+  .holo-text {
+    @apply text-[#00f3ff] uppercase font-bold;
+    text-shadow: 0 0 5px #00f3ff;
+  }
+
+  /* Modal Typography */
+  .holo-modal-title {
+    @apply text-base md:text-lg font-bold uppercase tracking-widest drop-shadow-md;
+  }
+  .holo-modal-subtitle {
+    @apply text-sm md:text-base font-bold uppercase text-center;
+  }
+  .holo-modal-text {
+    @apply text-xs md:text-sm leading-relaxed;
+  }
+  .holo-modal-label {
+    @apply text-xs md:text-sm font-bold uppercase;
+  }
+
+
+  .holo-btn {
+    @apply relative border border-[#00f3ff]/50 bg-[#00f3ff]/10 text-[#00f3ff] font-bold uppercase transition-all duration-200 active:scale-95;
+    text-shadow: 0 0 5px #00f3ff;
+  }
+  .holo-btn:hover:not(:disabled) {
+    @apply bg-[#00f3ff]/20;
+    box-shadow: 0 0 10px rgba(0,243,255,0.3), inset 0 0 10px rgba(0,243,255,0.2);
+  }
+  .holo-btn:disabled {
+    @apply opacity-50 cursor-not-allowed border-gray-600 bg-gray-900/50 text-gray-500;
+    text-shadow: none;
+  }
+
+  .holo-btn-danger {
+    @apply relative border font-bold uppercase transition-all duration-200 active:scale-95 border-red-500 bg-red-900/30 text-red-400;
+    text-shadow: 0 0 5px rgba(248,113,113,0.8);
+  }
+  .holo-btn-danger:hover:not(:disabled) {
+    @apply bg-red-900/50;
+    box-shadow: 0 0 10px rgba(239,68,68,0.3), inset 0 0 10px rgba(239,68,68,0.2);
+  }
+
+  .holo-btn-purple {
+    @apply relative border font-bold uppercase transition-all duration-200 active:scale-95 border-[#9B59B6]/50 bg-[#9B59B6]/15 text-[#9B59B6];
+    text-shadow: 0 0 5px #9B59B6;
+  }
+  .holo-btn-purple:hover:not(:disabled) {
+    @apply bg-[#9B59B6]/25;
+    box-shadow: 0 0 15px rgba(155,89,182,0.2), inset 0 0 10px rgba(155,89,182,0.1);
+  }
+
+  .holo-btn-orange {
+    @apply relative border font-bold uppercase transition-all duration-200 active:scale-95 border-[#F39C12]/50 bg-[#F39C12]/15 text-[#F39C12];
+    text-shadow: 0 0 5px #F39C12;
+  }
+  .holo-btn-orange:hover:not(:disabled) {
+    @apply bg-[#F39C12]/25;
+    box-shadow: 0 0 15px rgba(243,156,18,0.2), inset 0 0 10px rgba(243,156,18,0.1);
   }
 }

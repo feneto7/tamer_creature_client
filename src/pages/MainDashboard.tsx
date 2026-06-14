@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PixelLayout } from '../components/layout/PixelLayout';
+import { HoloLayout } from '../components/layout/HoloLayout';
 import { CreatureCard, Rarity } from '../components/ui/CreatureCard';
 import { CreatureDetailsModal } from '../components/ui/CreatureDetailsModal';
+import { HoloPanel } from '../components/ui/HoloPanel';
 
 const RARITY_WEIGHT: Record<string, number> = {
   DIVINE: 6,
@@ -47,8 +48,6 @@ export const MainDashboard = () => {
       .finally(() => setLoading(false));
   }, [navigate]);
 
-  const username = localStorage.getItem('username') || 'Tamer';
-
   const sortedCreatures = [...creatures].sort((a, b) => {
     const rarityA = RARITY_WEIGHT[a.rarity] || 0;
     const rarityB = RARITY_WEIGHT[b.rarity] || 0;
@@ -60,13 +59,11 @@ export const MainDashboard = () => {
   });
 
   return (
-    <PixelLayout title="INÍCIO">
+    <HoloLayout title="INÍCIO">
       <div className="space-y-6">
-        <div className="bg-white/90 p-4 pixel-border">
-          <h2 className="text-sm font-bold uppercase mb-4 border-b-2 border-gray-300 pb-2">Seu Esquadrão</h2>
-          
+        <HoloPanel title="Seu Esquadrão">
           {loading ? (
-            <p className="text-gray-500 animate-pulse text-center text-xs">Carregando dados da API...</p>
+            <p className="text-[#00f3ff] animate-pulse text-center text-xs">Carregando dados da API...</p>
           ) : creatures.length > 0 ? (
             <div className="flex flex-wrap justify-center gap-4 py-2">
               {sortedCreatures.map((c) => (
@@ -84,7 +81,7 @@ export const MainDashboard = () => {
           ) : (
             <p className="text-red-500 text-center text-xs">Nenhuma criatura encontrada.</p>
           )}
-        </div>
+        </HoloPanel>
       </div>
 
       {/* Modal de Detalhes */}
@@ -94,6 +91,6 @@ export const MainDashboard = () => {
           onClose={() => setSelectedCreature(null)} 
         />
       )}
-    </PixelLayout>
+    </HoloLayout>
   );
 };
